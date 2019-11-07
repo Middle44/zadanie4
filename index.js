@@ -23,8 +23,8 @@ var map = new Map({
   layers: layers,
   target: 'map',
   view: new View({
-    center: [18, 49], //treba zmeniť súradnice
-    zoom: 4,
+    center: [19.8, 48.7], //treba zmeniť súradnice
+    zoom: 8.5,
     projection: 'EPSG:4326'
   })
 });
