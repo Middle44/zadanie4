@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+   <head>
+         <title>BLA</title>
+         <link rel="stylesheet" href="lib/openlayers/theme/default/style.css" type="text/css">
+         <style>
+                 #map-id {
+                         width: 512px;
+                         height: 300px;
+                 }
+         </style>
+         <script src="lib/openlayers/OpenLayers.js"></script>
+        </head>
+        <body>
+         <h1>BLA BLA BLA</h1>
+         <div id="map-id"></div>
+         <script>
+                 var bounds = new OpenLayers.Bounds(
+                    17.873264, 48.733223,
+                    17.901966, 48.750580
+                 );
+
+                 var options = {
+                                 controls: [],
+                                 maxExtent: bounds,
+                                 maxResolution: 0.02741796875,
+                                 projection: "EPSG:4326",
+                                 units: 'm'
+                 };
+
+                 map = new OpenLayers.Map('map-id', options);
+
+                 var ccounties = new OpenLayers.Layer.WMS(
+                                 "Counties of Colorado - Untiled", "http://localhost:8083/geoserver/wms",
+                                 {
+                                         srs: 'EPSG:4326',
+                                         layers: 'Blasko:Cesta',
+                                         styles: '',
+                                         format:'image/png'
+                                 },
+                                 {singleTile: true, ratio: 1}
+                 );
+
+                 map.addLayer(ccounties);
+
+                 // build up all controls
+                 map.addControl(new OpenLayers.Control.PanZoomBar({
+                         position: new OpenLayers.Pixel(2, 15)
+                 }));
+                 map.addControl(new OpenLayers.Control.Navigation());
+                 map.addControl(new OpenLayers.Control.Scale());
+                 map.addControl(new OpenLayers.Control.MousePosition());
+                 map.zoomToExtent(bounds);
+
+         </script>
+        </body>
+</html>
